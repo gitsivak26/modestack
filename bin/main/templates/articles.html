@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Articles Page</title>
+		
+		<link rel="stylesheet" type="text/css" href="/css/articles.css">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script>
+    	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
+		<script type="text/javascript" src="/js/articles-validation.js"></script>
+	</head>
+	<body>
+		<div class="body-section">
+			<div class="main-article">
+				<div class="articlediv">
+					<div class="articlepanel">
+					
+						<div class="article-header">
+							<h1>Create New Article</h1>
+						</div>
+						
+						<div class="article-body">
+							<div class="article-form">
+								<form id="articleForm" name="articleForm" method="post" action="">
+									<div class="article-box">
+										<div class="author">
+											<label>Author</label>
+											<input type="text" class="article-input" id="author" name="author" value="" disabled/>
+											<input type="hidden" name="author_name" id="author_name" value="" />
+										</div>
+										<div class="title">
+											<label>Title</label>
+											<input type="text" class="article-input" id="title" name="title" placeholder="Title">
+										</div>
+										<div class="body">
+											<label>Body</label>
+											<textarea name="message" rows="10" cols="30" class="article-input" id="message" placeholder="Enter your own article."></textarea>
+										</div>
+										<div>
+											<input type="submit" id="article-submit" value="Submit" class="article-button">
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						
+						<div id="articles"></div>
+						
+						<!-- <div class="article-body">
+							<div class="article-form">
+								<div class="article-box">
+									<div class="title">
+										<label>Title</label>
+										modestack-blog-1
+									</div>
+									<div class="body">
+										<label>Body</label>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+										Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+										Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur
+									</div>
+									<div class="author">
+										<label>Author</label>
+										abinash
+									</div> -->
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,100 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	line-height: 1.42857143;
+	color:	#666;
+	letter-spacing: 0.5px;
+}
+h1 {
+	margin: 0px;
+	padding: 10px 15px;
+	background-color: #09c;
+	color:	#fff;
+	border-radius: 5px 5px 0px 0px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+label {
+	display: inline-block;
+	margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 1.42857143;
+	letter-spacing: 0.5px;
+}
+.body-section {
+	background-color:#efeeed;
+	padding: 100px 0px;
+}
+
+.main-register {
+	margin: 0px auto;
+	float: none;
+	padding-right: 0;
+	padding-left: 15px;
+	width: 75%;
+}
+.registerdiv {
+	margin: 0px auto;
+	float: none;
+	width: 41%;
+}
+.registerpanel {
+	border-color: #B1B2B4 !important;
+	background-color: #fff;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+.register-header {
+	color: #fff;
+	background-color: #09c;
+	border-color: #09c;
+	padding: 10px 15px;
+	border-bottom: 1px solid transparent;
+}
+.register-body {
+	padding: 15px;
+}
+.register-form {
+	padding: 15px 0;
+}
+.register-box, .username, .password, .email {
+	margin-bottom: 15px;
+}
+.register-input {
+	display: block;
+	width: 90%;
+	padding: 6px 12px;
+	font-size: 13px !important;
+	line-height: 1.42857143;
+	color: #555 !important;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+.register-button {
+	color: #fff;
+	background-color: #09c;
+	border-color: #09c;
+	border-radius: 5px;
+	padding: 7px 50px;
+	font-size: 13px;
+	margin-bottom: 15px;
+	margin-left: 125px;
+	margin-top: 20px;
+}
+.error {
+	color: #D8000C;
+	font-size: small;
+	font-weight: normal;
+}
+.error-register {
+	color: #D8000C;
+	font-family: serif;
+	text-align: center;
+	background-color: #ff00002e;
+	padding: 7px;
+}
