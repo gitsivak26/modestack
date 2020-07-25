@@ -49,7 +49,7 @@ public class PageViewController {
 			Model model) {
 		
 		if (accessToken != null) {
-			String originalValue = customerService.decrypt(accessToken, "modestack");
+			String originalValue = customerService.decrypt(accessToken);
 			System.out.println("Decrypted value = " + originalValue);
 			
 			model.addAttribute("username", originalValue);
