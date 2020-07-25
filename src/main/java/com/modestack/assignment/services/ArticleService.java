@@ -33,12 +33,10 @@ public class ArticleService {
 		return articleRepository.findAll();
 	}
 	
-	public List<Article> addArticle(Article article) {
+	public Article addArticle(Article article) {
 		
 		System.out.println("Adding article to database...");
 		
-		articleRepository.save(article);
-		
-		return getAllArticles();
+		return articleRepository.save(article);
 	}
 }

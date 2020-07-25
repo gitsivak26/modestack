@@ -43,6 +43,7 @@ $(document).ready(function () {
 		},
 		submitHandler: function(form) {
 			var redirect_url = "/articles/?accessToken="
+			
 			$.ajax({
 				type: "POST",
 				async: true,
@@ -63,6 +64,8 @@ $(document).ready(function () {
 					console.log(error.status);
 					if (error.status == 400)
 						$("#duplicate").show();
+						$("#username").val('');
+						$("#password").val('');
 				}
 			});
 		}

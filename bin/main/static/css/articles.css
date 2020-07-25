@@ -95,4 +95,11 @@ label {
 	padding: 10px 0px;
 	font-size: 12px;
 }*/
+.success-article {
+	color: #4F8A10;
+	font-family: serif;
+	text-align: center;
+	background-color: #8ae234;
+	padding: 7px;
+}
 

@@ -7,6 +7,8 @@ $(document).ready(function () {
 	//var params = new URLSearchParams(window.location.search);
 	$("#author_name, #author").val(username);
 	
+	$("#success").hide();
+	
 	$("#next").click(function() {
 		start = start + size;
 		getArticles();
@@ -55,22 +57,17 @@ $(document).ready(function () {
 					// convert string to JSON
 					response = $.parseJSON(response);
 					
-					console.log(response);
-					console.log(response.title);
-					console.log(response.message);
-					
-					$(function() {
-						$("#articles").empty();
-						$("#articles").append($('<tr/>').append($('<th/>').text("Articles From Database")));
-						$.each(response, function(i, item) {
-							$("#articles").append($('<tr/>').append($('<td/>').text(item.author_name)));
-							$("#articles").append($('<tr/>').append($('<td/>').text(item.title)));
-							$("#articles").append($('<tr/>').append($('<td/>').text(item.message)));
-						});
-					});
+					console.log(response.status);
+
+					$("#success").show();
+					$("#title").val('');
+					$("#message").val('');
 				},
 				error: function (error) {
 					console.log(error.status);
+					$("#success").hide();
+					$("#title").val('');
+					$("#message").val('');
 				}
 			});
 		}
