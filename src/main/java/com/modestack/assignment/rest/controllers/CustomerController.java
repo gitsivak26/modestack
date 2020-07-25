@@ -24,8 +24,16 @@ public class CustomerController {
 		boolean isCustomerExists = customerService.customerExists(customer);
 		System.out.println(isCustomerExists);
 		
+		
 		if (!isCustomerExists) {
-			return ResponseEntity.status(HttpStatus.CREATED).body(customerService.saveCustomer(customer));
+			
+			Customer customerFromDB = customerService.saveCustomer(customer);
+			
+			String accessToken = customerService.encrypt(customer.getUsername(), "modestack");
+			System.out.println(accessToken);
+			customerFromDB.setAccessToken(accessToken);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(customerFromDB);
 		}
 		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Duplicate datas not allowed.");
@@ -41,6 +49,10 @@ public class CustomerController {
 		Customer customerFromDb = customerService.validateCustomer(username);
 		
 		if (password.equals(customerFromDb.getPassword())) {
+			String accessToken = customerService.encrypt(username, "modestack");
+			System.out.println(accessToken);
+			customerFromDb.setAccessToken(accessToken);
+			
 			return ResponseEntity.status(HttpStatus.OK).body(customerFromDb);
 		}
 		

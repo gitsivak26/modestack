@@ -1,9 +1,23 @@
+
+var start = 0;
+var size = 3;
+
 $(document).ready(function () {
 	
-	var params = new URLSearchParams(window.location.search);
-	$("#author_name, #author").val(params.get('username'));
+	//var params = new URLSearchParams(window.location.search);
+	$("#author_name, #author").val(username);
 	
-	getAllArticles();
+	$("#next").click(function() {
+		start = start + size;
+		getArticles();
+	});
+	
+	$("#previous").click(function() {
+		start = start - size;
+		getArticles();
+	});
+	
+	getArticles();
 		
 	$("#articleForm").validate({
 		rules: {
@@ -32,7 +46,7 @@ $(document).ready(function () {
 		submitHandler: function(form) {
 			$.ajax({
 				type: "POST",
-				url: "/articles/",
+				url: "/api/v1/articles/",
 				dataType: 'json',
 				data: $("#articleForm").serialize(),
 				success: function (response) {
@@ -63,10 +77,10 @@ $(document).ready(function () {
 	});
 });
 
-function getAllArticles() {
+function getArticles() {
 	$.ajax({
 		type: "GET",
-		url: "/articles/",
+		url: "/api/v1/articles/" + start + "/" + size,
 		dataType: 'json',
 		success: function (response) {
 			var response = JSON.stringify(response);

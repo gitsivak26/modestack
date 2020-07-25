@@ -13,6 +13,7 @@ public class Customer {
 	private String email;
 	private String password;
 	private String address;
+	private String accessToken;
 
 	public int getUser_id() {
 		return user_id;
@@ -43,5 +44,11 @@ public class Customer {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getAccessToken() {
+		return accessToken;
+	}
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
 	}
 }

@@ -42,7 +42,7 @@ $(document).ready(function () {
 			}
 		},
 		submitHandler: function(form) {
-			var redirect_url = "/articles/?username="
+			var redirect_url = "/articles/?accessToken="
 			$.ajax({
 				type: "POST",
 				async: true,
@@ -55,8 +55,9 @@ $(document).ready(function () {
 					// convert string to JSON
 					response = $.parseJSON(response);
 					console.log(response);
+					console.log(response.accessToken);
 					
-					window.location.href = redirect_url + response.username;
+					window.location.href = redirect_url + response.accessToken;
 				},
 				error: function (error) {
 					console.log(error.status);

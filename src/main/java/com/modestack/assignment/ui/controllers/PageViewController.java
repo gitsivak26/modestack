@@ -8,14 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.modestack.assignment.services.ArticleService;
+import com.modestack.assignment.services.CustomerService;
 
 @Controller
 public class PageViewController {
 	
 	@Autowired
 	ArticleService articleService;
+	
+	@Autowired
+	CustomerService customerService;
 	
 	private static final String LOGIN_VIEW = "login";
 	private static final String REGISTER_VIEW = "register";
@@ -39,11 +44,21 @@ public class PageViewController {
 	
 	@RequestMapping(path = "/articles", method = RequestMethod.GET)
 	public String viewArticles(HttpServletRequest request, 
-			HttpServletResponse response, 
+			HttpServletResponse response,
+			@RequestParam("accessToken") String accessToken,
 			Model model) {
 		
-		articleService.getAllArticles();
+		if (accessToken != null) {
+			String originalValue = customerService.decrypt(accessToken, "modestack");
+			System.out.println("Decrypted value = " + originalValue);
+			
+			model.addAttribute("username", originalValue);
+			
+			return ARTICLES_VIEW;
+		}
 		
-		return ARTICLES_VIEW;
+		//articleService.getAllArticles();
+		
+		return LOGIN_VIEW;
 	}
 }

@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
 		<title>Articles Page</title>
 		
 		<link rel="stylesheet" type="text/css" href="/css/articles.css">
+		
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+				var username = /*[[${username}]]*/ "Test";
+				/*]]>*/
+		</script>
 		
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script>
     	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
@@ -46,6 +52,12 @@
 						</div>
 						
 						<div id="articles"></div>
+						<div>
+							<input type="button" id="next" name="next" value="next" />
+						</div>
+						<div>
+							<input type="button" id="previous" name="previous" value="previous" />
+						</div>
 						
 						<!-- <div class="article-body">
 							<div class="article-form">
@@ -63,10 +75,10 @@
 									<div class="author">
 										<label>Author</label>
 										abinash
-									</div> -->
+									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						
 					</div>
 				</div>
