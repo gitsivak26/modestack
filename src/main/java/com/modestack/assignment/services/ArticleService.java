@@ -15,28 +15,22 @@ public class ArticleService {
 	@Autowired
 	ArticleRepository articleRepository;
 	
-	public List<Article> getPaginatedArticles(int start, int size) {
+	public List<Article> getPaginatedArticles(int startFrom, int noOfArticles) {
+
+		ArrayList<Article> listOfArticles = new ArrayList<Article>(articleRepository.findAll());
 		
-		System.out.println("Article Service called...");
+		if (noOfArticles > listOfArticles.size()) new ArrayList<Article>();
 		
-		ArrayList<Article> listOfArticles = new ArrayList<>(articleRepository.findAll());
-		
-		if (size > listOfArticles.size()) new ArrayList<Article>();
-		
-		return listOfArticles.subList(start, start + size);
+		return listOfArticles.subList(startFrom, startFrom + noOfArticles);
 	}
 	
 	public List<Article> getAllArticles() {
-		
-		System.out.println("Article Service called...");
-		
+
 		return articleRepository.findAll();
 	}
 	
 	public Article addArticle(Article article) {
-		
-		System.out.println("Adding article to database...");
-		
+
 		return articleRepository.save(article);
 	}
 }

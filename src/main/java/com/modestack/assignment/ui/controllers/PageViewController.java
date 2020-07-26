@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.modestack.assignment.services.ArticleService;
 import com.modestack.assignment.services.CustomerService;
+import com.modestack.assignment.services.SecurityService;
 
 @Controller
 public class PageViewController {
@@ -21,6 +22,9 @@ public class PageViewController {
 	
 	@Autowired
 	CustomerService customerService;
+	
+	@Autowired
+	SecurityService securityService;
 	
 	private static final String LOGIN_VIEW = "login";
 	private static final String REGISTER_VIEW = "register";
@@ -49,15 +53,12 @@ public class PageViewController {
 			Model model) {
 		
 		if (accessToken != null) {
-			String originalValue = customerService.decrypt(accessToken);
-			System.out.println("Decrypted value = " + originalValue);
+			String originalValue = securityService.decrypt(accessToken);
 			
 			model.addAttribute("username", originalValue);
 			
 			return ARTICLES_VIEW;
 		}
-		
-		//articleService.getAllArticles();
 		
 		return LOGIN_VIEW;
 	}

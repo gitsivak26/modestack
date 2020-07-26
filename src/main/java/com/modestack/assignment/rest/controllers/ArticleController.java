@@ -20,25 +20,20 @@ public class ArticleController {
 	
 	@GetMapping(path = "/api/v1/articles")
 	public ResponseEntity<?> getAllArticles() {
-		System.out.println("Article GET API called...");
 		
 		return ResponseEntity.status(HttpStatus.OK).body(articleService.getAllArticles());
 	}
 	
-	@GetMapping(path = "/api/v1/articles/{start}/{size}")
-	public ResponseEntity<?> getPaginatedArticles(@PathVariable("start") int start,
-			@PathVariable("size") int size) {
-		System.out.println("Article GET API called...");
+	@GetMapping(path = "/api/v1/articles/{startFrom}/{noOfArticles}")
+	public ResponseEntity<?> getPaginatedArticles(@PathVariable("startFrom") int startFrom,
+			@PathVariable("noOfArticles") int noOfArticles) {
 		
-		return ResponseEntity.status(HttpStatus.OK).body(articleService.getPaginatedArticles(start, size));
+		return ResponseEntity.status(HttpStatus.OK).body(articleService.getPaginatedArticles(startFrom, noOfArticles));
 	}
 	
 	@PostMapping(path = "/api/v1/articles")
 	public ResponseEntity<?> addArticle(@ModelAttribute Article article) {
-		
-		System.out.println("Article POST API called...");
-		
+
 		return ResponseEntity.status(HttpStatus.OK).body(articleService.addArticle(article));
-	}
-	
+	}	
 }

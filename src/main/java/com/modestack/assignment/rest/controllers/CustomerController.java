@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.modestack.assignment.model.Customer;
 import com.modestack.assignment.services.CustomerService;
+import com.modestack.assignment.services.SecurityService;
 
 @RestController
 public class CustomerController {
@@ -17,23 +18,21 @@ public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 	
+	@Autowired
+	SecurityService securityService;
+	
 	@PostMapping(path = "/register")
 	public ResponseEntity<?> customerRegistration(@ModelAttribute Customer customer) {
-		System.out.println("Registration API called...");
 		
 		boolean isCustomerExists = customerService.customerExists(customer);
-		System.out.println(isCustomerExists);
-		
 		
 		if (!isCustomerExists) {
 			
 			Customer customerFromDB = customerService.saveCustomer(customer);
 			
-//			String accessToken = customerService.encrypt(customer.getUsername());
-//			
-//			System.out.println(accessToken);
-//			
-//			customerFromDB.setAccessToken(accessToken);
+			String accessToken = securityService.encrypt(customer.getUsername());
+			
+			customerFromDB.setAccessToken(accessToken);
 			
 			return ResponseEntity.status(HttpStatus.CREATED).body(customerFromDB);
 		}
@@ -44,20 +43,18 @@ public class CustomerController {
 	@PostMapping(path = "/login")
 	public ResponseEntity<?> customerLogin(@RequestParam String username, 
 			@RequestParam String password) {
+
+		Boolean isValidCustomer = customerService.validCustomer(username, password);
 		
-		System.out.println("Login API called...");
-		System.out.println("username = " + username + "and password = " + password);
-		
-		Customer customerFromDb = customerService.validateCustomer(username);
-		
-		if (password.equals(customerFromDb.getPassword())) {
-			String accessToken = customerService.encrypt(username);
-			System.out.println(accessToken);
-			customerFromDb.setAccessToken(accessToken);
+		if (isValidCustomer) {
+			
+			Customer customerFromDb = customerService.getCustomerDetails(username);
+			
+			customerFromDb.setAccessToken(securityService.encrypt(username));
 			
 			return ResponseEntity.status(HttpStatus.OK).body(customerFromDb);
 		}
 		
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Un Authorized.");
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Not a valid user.");
 	}
 }
